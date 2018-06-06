@@ -333,6 +333,8 @@ defmodule RethinkDB.Ecto do
             {data["replaced"], nil}
           :delete_all ->
             {data["deleted"], nil}
+          :insert ->
+            {:ok, []}
           _else when is_list(returning) ->
             new_fields = for field <- returning, id <- Map.get(data, "generated_keys", []), do: {field, id}
             new_fields = Keyword.merge(new_fields, fields)
